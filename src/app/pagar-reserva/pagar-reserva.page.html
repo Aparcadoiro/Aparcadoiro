@@ -1,0 +1,72 @@
+<!--Creacion del formulario para la creacion de parqueaderos -->
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row style="height: 100%;">
+      <ion-col size="0" size-lg="4">
+        <!--logo-->
+        <div id="fondo">
+          <img src="../../assets/img/Sin fondo (Blanco)(Recortado).png">
+        </div>    
+      </ion-col>
+      <ion-col size="12" size-lg="8">
+        <ion-header>
+          <ion-toolbar>
+            <!--LLamado del isEditMode del add-parqueadero.page.ts-->
+            <ion-title>Pagar Reserva</ion-title>
+            <!--Botones para cerrar el modal de añadir parqueaderos-->
+            <!--cerrar modal al finalizar la creacion de parqueadero-->
+            <ion-buttons slot="end">
+              <ion-button (click)="closeModal()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+          <form [formGroup]="form">
+            <ion-item>
+              <ion-label position="floating">Ingrese la placa o referencia del vehiculo</ion-label>
+              <ion-input formControlName='placa'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Ingrese el tipo de vehiculo que estacionó</ion-label>
+              <ion-select formControlName='vehiculo' placeholder="tipo de vehiculo">
+                <ion-select-option value="0">Automovil</ion-select-option>
+                <ion-select-option value="1">Motocicleta</ion-select-option>
+                <ion-select-option value="2">Bicicleta</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Dia de ingreso</ion-label>
+              <ion-input type="text" formControlName='dia_ingreso'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Hora de ingreso</ion-label>
+              <ion-input type="time" formControlName='hora_ingreso'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Hora de salida *</ion-label>
+              <ion-input type="time" formControlName='hora_salida' (change)="realizarCambios($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Confirme la casilla si ya realizó el pago</ion-label>
+              <ion-checkbox color="success" checked="true" formControlName='confirmUser'></ion-checkbox>
+            </ion-item>
+            <div *ngIf="mostrarPrecio == true">
+              <ion-item>
+                <ion-label position="stacked">El precio total a pagar es: ${{valor}}</ion-label>
+              </ion-item>
+            </div>
+            
+            <!--Boton para envio del boton-->
+            <ion-button (click)="closeModal()" color="danger">
+              Cancelar
+            </ion-button>
+            <ion-button (click)="submitReserva()" [disabled]="form.invalid" color="success">
+              Pagar
+            </ion-button>
+          </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

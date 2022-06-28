@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title size="large">
+      <ion-img src="../../assets/img/Sin fondo (Negro) (Recortado).png" style="width: 90px;"></ion-img>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopover( $event )">
+        <ion-icon slot="end" name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<!-- Creacion de las card-->
+<ion-content>
+  <!-- Etiqueta para definir el tamaño de las cards -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <!-- boton para borrar la ruta -->
+        <ion-button color="danger" *ngIf="this.boton === true" class="btnRuta" (click)="borrarRuta()" expand="block"  shape="round">
+          borrar ruta
+        </ion-button>
+        <!-- Div contenedor del mapa -->
+        <div id="mapa4321" class="mapa4321">
+        </div>
+      </ion-col>
+      <ion-row>
+        <!-- Funcion para recorrer le tabla parqueaderos de la base de datos (Para traer todos los registros de los parqueaderos) -->
+        <ion-col size="6" size-md="4" size-lg="3" *ngFor="let parqueadero of parqueaderos$|async">
+          <ion-card style="background-color: rgba(221, 221, 221, 0.707); box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.275);"
+            (click)="openDetailModal(parqueadero)">
+          
+            <div *ngIf="parqueadero.activo == true">
+              <!-- Etiqueta para mostrar el contenido de las cards -->
+              <ion-card-content style="padding: 0;">
+                <!-- Etiqueta para traer la imagen del parqueadero y mostrarla en la card -->
+                <img style="object-fit: cover; height: 30vh; max-width: 100%; " [src]="parqueadero.imagenUrl" />
+                <div class="text-center">
+                <label>
+                    <h1>
+                      {{parqueadero.direccion}}    
+                    </h1>
+                </label>
+                </div>
+              </ion-card-content>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+
+
+    </ion-row>
+  </ion-grid>
+
+
+  <!-- Pie de pagina -->
+  <footer
+    class="text-center text-lg-start text-light justify-content-center justify-content-lg-between p-1 border-bottom"
+    style="background-color: #232F3E; position:absolute; left:0; width: 100%;">
+    <section>
+      <!-- Contenedor de la pagina -->
+      <div class="container text-center text-md-start mt-10">
+        <!-- Fila -->
+        <div class="row mt-3">
+          <!-- Columna -->
+          <div class="col-md-1 col-lg-4 col-xl-4 mx-auto mb-4">
+            <!-- Contenido -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <img width="230px" src="../../assets/img/Sin fondo (Blanco)(Recortado).png" alt="">
+            </h6>
+          </div>
+          <!-- Columna -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-2">
+            <!-- Links del pie de pagina -->
+            <h6 class="text-uppercase mb-4">
+              CONTACTO
+            </h6>
+            <p>
+              +57 3142461517
+            </p>
+            <p>831542869
+            </p>
+            <p>aparcadoiro14@gmail.com
+            </p>
+          </div>
+
+          <!-- Columna -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-2">
+            <!-- Links del pie de pagina -->
+            <h6 class="text-uppercase mb-4">
+              LEGAL
+            </h6>
+            <p>
+              <a class="text-reset">Terminos y condiciones politicas de privacidad.</a>
+            </p>
+          </div>
+
+          <!-- Columna -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-2">
+            <!-- Links del pie de pagina -->
+            <h6 class="text-uppercase mb-4">
+              Redes Sociales
+            </h6>
+            <div class="row">
+              <div class="col-4">
+                <p><img width="30rem" src="../../assets/img/facebook.png" alt=""></p>
+              </div>
+              <div class="col-4">
+                <p><img width="30rem" src="../../assets/img/twitter.png" alt=""></p>
+              </div>
+              <div class="col-4">
+                <p><img width="30rem" src="../../assets/img/intagram.png" alt=""></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+</ion-content>

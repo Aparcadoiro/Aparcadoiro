@@ -1,0 +1,46 @@
+<!-- Header del html ionic -->
+<ion-header>
+  <ion-toolbar>
+    <!-- Titulo del header -->
+    <ion-title>Verificacion de Email</ion-title>
+    <!-- Botones del header -->
+    <ion-buttons slot="end">
+      <!-- Boton para cerrar el modal -->
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="start" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contenido del html -->
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="0" size-lg="4">
+        <!--logo-->
+        <div id="fondo">
+          <img src="../../assets/img/Sin fondo (Blanco)(Recortado).png">
+        </div>
+      </ion-col>
+      <ion-col size="12" size-lg="8"></ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- Etiqueta para definir el tamaño del contenido -->
+  <ion-grid size-lg="3">
+      <!-- Funcion para recorrer le tabla parqueaderos de la base de datos (Para traer todos los registros de los parqueaderos) -->
+      <ion-row>
+        <!-- Contenedor -->
+        <ion-col size="12"> 
+          <ion-title style="text-align: center;">Se ha enviado una verificacion a su Correo</ion-title>
+          <ion-text color="dark">
+            <h6 style="text-align: center;">¡Por favor verifique su correo electronico para activar su cuenta!</h6>
+          </ion-text>
+        </ion-col>
+        <!-- Contenedor del botón reenviar -->
+        <ion-col size="12">
+          <ion-button type="submit" color="primary" (click)="onSendEmail()" expand="block">Reenviar</ion-button>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

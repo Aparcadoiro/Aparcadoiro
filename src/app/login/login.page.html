@@ -1,0 +1,53 @@
+<!--formulario para incio de sesion-->
+<ion-row>
+  <ion-col size="0" size-sm="3" >
+    <div id="fondo">
+      <img  src="../../assets/img/Sin fondo (Blanco)(Recortado).png">
+    </div>
+  </ion-col>
+  <ion-col size="12" size-sm="9">
+    <ion-header>
+      <ion-toolbar>
+        <!--apartado de incio de sesion -->
+        <ion-title>INGRESAR</ion-title>
+        <ion-buttons slot="end">
+          <!--cerrar modal -->
+          <ion-button (click)="closeModal()">
+            <!--cerrar modal-->
+            <ion-icon slot="start" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <form style="margin-top: 20px;">
+      <ion-item >
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input  #email required type="email" placeholder="Ingrese su correo"></ion-input>
+      </ion-item>
+      <ion-item >
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" #password required placeholder="Ingrese su contraseña"></ion-input>
+      </ion-item>
+      <br>
+        <ion-button type="submit" (click)="onLogin(email,password)" expand="block" >Iniciar Sesion</ion-button>
+        <div *ngIf="verificado == false">
+          <ion-label color="danger">Tu email no está verificado</ion-label>
+        </div>
+        <div *ngIf="verificado1 == false">
+          <ion-label color="danger">Tu correo o contraseña está incorrecto</ion-label>
+        </div>
+      <br>
+      <ion-button type="submit" color="danger" (click)="onLoginGoogle()" expand="block">
+        <ion-icon slot="icon-only" name="logo-google"></ion-icon>
+      </ion-button>
+    <br>
+      <p class="ion-text-center">
+        <a (click)="openForgotModal()" style="color: rgb(87, 135, 255);"> ¿Olvidaste tu contraseña?</a>
+      </p>
+      <p class="ion-text-center">
+        ¿No tienes cuenta aún?
+        <a (click)="openRegisterModal()" (click)="closeModal()" style="color: rgb(87, 135, 255);">Registrate aquí</a> 
+      </p>
+    </form>
+  </ion-col>
+</ion-row>

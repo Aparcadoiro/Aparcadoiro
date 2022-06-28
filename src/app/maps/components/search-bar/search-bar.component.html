@@ -1,0 +1,13 @@
+<div class="search-container">
+    <!--mostrar a el usuario el cuadro para buscar la funcionalidad-->
+    <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar lugar ..."
+        #textQuery
+        (keyup)="onQueryChanged(textQuery.value)"
+    >
+
+    <!--llamar el componente search result-->
+    <app-search-results></app-search-results>
+</div>

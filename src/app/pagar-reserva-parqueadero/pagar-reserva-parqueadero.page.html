@@ -1,0 +1,59 @@
+<!--Creacion del formulario para la creacion de parqueaderos -->
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row style="height: 100%;">
+      <ion-col size="0" size-lg="4">
+        <!--logo-->
+        <div id="fondo">
+          <img src="../../assets/img/Sin fondo (Blanco)(Recortado).png">
+        </div>    
+      </ion-col>
+      <ion-col size="12" size-lg="8">
+        <ion-header>
+          <ion-toolbar>
+            <!--LLamado del isEditMode del add-parqueadero.page.ts-->
+            <ion-title>Verificacion de pago de Reserva</ion-title>
+            <!--Botones para cerrar el modal de añadir parqueaderos-->
+            <!--cerrar modal al finalizar la creacion de parqueadero-->
+            <ion-buttons slot="end">
+              <ion-button (click)="closeModal()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+          <form [formGroup]="form">
+            <ion-item>
+              <ion-label position="floating">placa del vehiculo</ion-label>
+              <ion-input formControlName='placa'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Dia de ingreso</ion-label>
+              <ion-input type="text" formControlName='dia_ingreso'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Hora de ingreso</ion-label>
+              <ion-input type="text" formControlName='hora_ingreso'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Hora de salida *</ion-label>
+              <ion-input type="text" formControlName='hora_salida'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Confirme la casilla si el cliente ya realizó el pago</ion-label>
+              <ion-checkbox color="success" checked="true" formControlName='confirmParqueadero'></ion-checkbox>
+            </ion-item>
+            
+            <!--Boton para envio del boton-->
+            <ion-button (click)="closeModal()" color="danger">
+              Cancelar
+            </ion-button>
+            <ion-button (click)="submitReserva()" [disabled]="form.invalid" color="success">
+              Confirmar
+            </ion-button>
+          </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

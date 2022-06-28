@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reservas de mi parqueadero</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let reserva of reservas$|async">
+        <div *ngIf="reserva.pid == parqueadero.id">
+          <ion-card-header>
+            <h2>
+              <div *ngIf="reserva.confirmUser == true && reserva.confirmParqueadero == true;else Unverified">
+                {{ reserva.dia_ingreso }}<ion-icon color="success" name="checkmark-circle-outline"></ion-icon>
+              </div>
+              <ng-template #Unverified>
+                {{ reserva.dia_ingreso }}<ion-icon color="danger" name="alert-circle-outline"></ion-icon>
+              </ng-template>
+            </h2>
+          </ion-card-header>
+            <ion-card-content>
+              <h2> Hora: {{ reserva.hora_ingreso }} </h2>
+              <h2> Placa del vehiculo: {{ reserva.placa }} </h2>
+              <hr>
+              <ion-button (click)="openDetailReserva(reserva)">
+                Detalle
+              </ion-button>
+            </ion-card-content>
+        </div>
+    </ion-card>
+</ion-content>

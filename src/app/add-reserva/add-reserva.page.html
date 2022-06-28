@@ -1,0 +1,80 @@
+<!--Creacion del formulario para la creacion de parqueaderos -->
+<ion-content class="ion-padding" *ngIf="user$ | async as user">
+  <ion-grid>
+    <ion-row style="height: 100%;">
+      <ion-col size="0" size-lg="4">
+        <!--logo-->
+        <div id="fondo">
+          <img src="../../assets/img/Sin fondo (Blanco)(Recortado).png">
+        </div>    
+      </ion-col>
+      <ion-col size="12" size-lg="8">
+        <ion-header>
+          <ion-toolbar>
+            <!--LLamado del isEditMode del add-parqueadero.page.ts-->
+            <ion-title>Reservar</ion-title>
+            <!--Botones para cerrar el modal de añadir parqueaderos-->
+            <!--cerrar modal al finalizar la creacion de parqueadero-->
+            <ion-buttons slot="end">
+              <ion-button (click)="closeModal()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+          <form [formGroup]="form">
+            <ion-item>
+              <ion-label position="floating">Ingrese la placa del vehiculo *</ion-label>
+              <ion-input formControlName='placa'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked" color="light">Dia de ingreso *</ion-label>
+              <ion-input type="date" class="input" formControlName='dia_ingreso'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Hora de ingreso *</ion-label>
+              <ion-input type="time" formControlName='hora_ingreso'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Hora de salida (opcional)</ion-label>
+              <ion-input type="time" formControlName='hora_salida'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Foto del vehiculo(Frontal)</ion-label>
+              <ion-input formControlName='imagenUrlFro'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Foto del vehiculo(Trasera)</ion-label>
+              <ion-input formControlName='imagenUrlTra'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Foto del vehiculo(Lateral Derecha)</ion-label>
+              <ion-input formControlName='imagenUrlDer'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Foto del vehiculo(Lateral Izquierda)</ion-label>
+              <ion-input formControlName='imagenUrlIzq'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Seleccione su correo</ion-label>
+              <ion-select formControlName='uid' value="{{ user?.uid }}" cancelText="">
+                <ion-select-option value="{{ user?.uid }}">{{ user?.email }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Seleccione el parqueadero</ion-label>
+              <ion-select formControlName='pid' value="{{ parqueadero.id }}" cancelText="">
+                <ion-select-option value="{{ parqueadero.id }}">{{ parqueadero.direccion }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            
+            <!--Boton para envio del boton-->
+            <ion-button expand="block" (click)="submitReserva()" [disabled]="form.invalid">
+              Reservar
+            </ion-button>
+          </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

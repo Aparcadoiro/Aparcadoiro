@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  front:
+    build: ./
+    container_name: clienteparqueadero
+    restart: always
+    ports:
+      -  8100:8100

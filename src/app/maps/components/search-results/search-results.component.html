@@ -1,0 +1,25 @@
+<!--apartado donde se mostrara el sistema de lugares cercanos-->
+<div *ngIf="isLoadingPlaces"
+    class="alert alert-primary mt-2 text-center">
+    <h6>Cargando</h6>
+    <span>Espere por favor...</span>
+</div>
+
+<!--pointer para ir hacia dichas direcciones de parqueaderos-->
+<ul class="list-group mt-2" *ngIf="places.length>0">
+    <li *ngFor="let place of places"
+        class="list-group-item list-group-item-action pointer"
+        [class.active]="place.id === selectedId"
+        (click)="flyTo(place)">
+        <h6>{{place.text_es}}</h6>
+        <p>
+            {{place.place_name}}
+        </p>
+        <button 
+            class="btn btn-sm"
+            (click)="getDirection(place)"
+            [ngClass]="(place.id === selectedId)? 'btn-outline-light': 'btn-outline-primary'">
+            Direcciones
+        </button>
+    </li>
+</ul>

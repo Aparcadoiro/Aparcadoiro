@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <!--llamado de parqueadero TS direccion model.ts -->
+    <ion-title>{{parqueadero.direccion}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="start" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-content>
+            <!--importacion de la imagen para parquederos-->
+            <img [src]="parqueadero.imagenUrl" alt="imagen">
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Direccion del estacionamiento</ion-card-subtitle>
+            <ion-card-title>{{parqueadero.direccion}}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Tarifas</ion-card-subtitle>
+            <ion-card-title>Automoviles: {{parqueadero.automoviles}}</ion-card-title>
+            <ion-card-title>Motocicletas: {{parqueadero.motocicletas}}</ion-card-title>
+            <ion-card-title>Bicicletas: {{parqueadero.bicicletas}}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Cupos del parqueadero</ion-card-subtitle>
+            <ion-card-title>{{parqueadero.cupos}}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <div class="ion-padding">
+        <ion-button (click)="openReservasModal(parqueadero)" color="success">Reservas</ion-button>
+        <!--abrir modal para editar parqueadero -->
+        <ion-button (click)="openEditModal()" color="primary">Editar</ion-button>
+  </div>
+</ion-content>

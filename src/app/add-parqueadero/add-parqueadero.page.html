@@ -1,0 +1,111 @@
+<!--Creacion del formulario para la creacion de parqueaderos -->
+<ion-content class="ion-padding">
+    <ion-grid>
+        <ion-row>
+            <ion-col size="0" size-lg="4">
+                <!--logo-->
+                <div id="fondo">
+                    <img src="../../assets/img/Sin fondo (Blanco)(Recortado).png">
+                </div>
+            </ion-col>
+            <ion-col size="12" size-lg="8">
+                <ion-header>
+                    <ion-toolbar>
+                        <!--Llamado del isEditMode del add-parqueadero.page.ts-->
+                        <ion-title>{{isEditMode ? 'Actualizar' : 'Crear'}} parqueadero</ion-title>
+                        <!--Botones para cerrar el modal de añadir parqueaderos-->
+                        <ion-buttons slot="end" *ngIf="!isEditMode">
+                            <ion-button (click)="closeModal()">
+                                <ion-icon slot="icon-only" name="close"></ion-icon>
+                            </ion-button>
+                        </ion-buttons>
+                        <!--cerrar modal al finalizar la creacion de parqueadero-->
+                        <ion-buttons slot="end" *ngIf="isEditMode">
+                            <ion-button (click)="closeModal()">
+                                <ion-icon slot="icon-only" name="close"></ion-icon>
+                            </ion-button>
+                        </ion-buttons>
+                    </ion-toolbar>
+                </ion-header>
+                <div *ngIf="user$ | async as user">
+                    <form [formGroup]='form'>
+                        <ion-item>
+                            <ion-label position="floating">Direccion</ion-label>
+                            <ion-input formControlName='direccion'></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Latitud</ion-label>
+                            <ion-input formControlName='Latitud'></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Longitud</ion-label>
+                            <ion-input formControlName='Longitud'></ion-input>
+                        </ion-item>
+                        <ion-button href="https://www.google.com/maps/@4.7092668,-74.2193678,15z" target="_blank" expand="full" color="primary">
+                            Obtener latitud y longitud
+                        </ion-button>
+                        <ion-item>
+                            <ion-accordion-group>
+                                <ion-accordion value="Categoría">
+                                  <ion-item slot="header">
+                                    <ion-label>Categoría</ion-label>
+                                  </ion-item>
+                                  <ion-list slot="content">
+                                    <ion-item>
+                                        <ion-label>Automoviles</ion-label>
+                                        <ion-checkbox (click)="showLabelA()" color="success" checked="false"></ion-checkbox>
+                                        <div *ngIf="ocultar1">
+                                            <ion-label position="floating">Precio por hora</ion-label>
+                                            <ion-input type="number" formControlName='automoviles'>$</ion-input>
+                                        </div>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label>Motocicletas</ion-label>
+                                        <ion-checkbox (click)="showLabelM()" color="success" checked="false"></ion-checkbox>
+                                        <div *ngIf="ocultar2">
+                                            <ion-label position="floating" >Precio por hora</ion-label>
+                                            <ion-input type="number" formControlName='motocicletas'>$</ion-input>
+                                        </div>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label>Bicicletas</ion-label>
+                                        <ion-checkbox (click)="showLabelB()" color="success" checked="false"></ion-checkbox>
+                                        <div *ngIf="ocultar3">
+                                            <ion-label position="floating" >Precio por hora</ion-label>
+                                            <ion-input type="number" formControlName='bicicletas'>$</ion-input>
+                                        </div>
+                                    </ion-item>
+                                  </ion-list>
+                                </ion-accordion>
+                               
+                              </ion-accordion-group>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Cupos</ion-label>
+                            <ion-input type="number" formControlName='cupos'></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Url de la imagen</ion-label>
+                            <ion-input formControlName='imagenUrl'></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Parqueadero activo</ion-label>
+                            <ion-checkbox color="success" checked="true" formControlName='activo'></ion-checkbox>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Seleccione su correo</ion-label>
+                            <ion-select formControlName='uid' value="{{ user?.uid }}">
+                                <ion-select-option value="{{ user?.uid }}">{{ user?.email }}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                        <!--Boton para envio del formulario-->
+                        <ion-button expand="block" (click)="submitParqueadero()" [disabled]="form.invalid">
+                            {{isEditMode ? 'Actualizar' : 'Crear'}} parqueadero
+                        </ion-button>
+                    </form>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

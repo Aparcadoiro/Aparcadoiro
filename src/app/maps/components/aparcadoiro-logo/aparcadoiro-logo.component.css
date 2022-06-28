@@ -1,0 +1,17 @@
+@media only screen and (min-width : 901px){
+    .logo {
+        position: absolute;
+        top: 530px;
+        right: 20px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+}
+
+@media only screen and (max-width : 900px){
+    .logo {
+        position: absolute;
+        top: 360px;
+        right: 20px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+}

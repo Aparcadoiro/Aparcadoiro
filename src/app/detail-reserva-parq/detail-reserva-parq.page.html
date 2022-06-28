@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalle de la reserva</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="start" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Placa del vehiculo</ion-card-subtitle>
+            <ion-card-title>{{ reserva.placa }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Dia de la reserva</ion-card-subtitle>
+            <ion-card-title>{{ reserva.dia_ingreso }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Hora de la ingreso</ion-card-subtitle>
+            <ion-card-title>{{ reserva.hora_ingreso }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-lg="6" *ngIf="reserva.hora_salida == null">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Hora de salida</ion-card-subtitle>
+            <ion-card-title>Indefinida</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-lg="6" *ngIf="reserva.hora_salida != null">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Hora de salida</ion-card-subtitle>
+            <ion-card-title>{{ reserva.hora_salida }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" *ngIf="reserva.confirmUser == true && reserva.confirmParqueadero == false">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Estado de la reserva</ion-card-subtitle>
+            <ion-card-title color="danger">Requiere confirmacion de pago</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button (click)="openPagoModal()" color="success" expand="block">
+              Pagar ahora
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <!--requiere confirmar pago-->
+      <ion-col size="12" *ngIf="reserva.confirmUser == false && reserva.confirmParqueadero == false">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Estado de la reserva</ion-card-subtitle>
+            <ion-card-title color="danger">Requiere confirmación de pago</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button (click)="openPagoModal()" color="success" expand="block">
+              Pagar ahora
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <!--reserva completa-->
+      <ion-col size="12" *ngIf="reserva.confirmUser == true && reserva.confirmParqueadero == true">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Estado de la reserva</ion-card-subtitle>
+            <ion-card-title color="success">Reserva completa</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" *ngIf="reserva.confirmUser == false && reserva.confirmParqueadero == true">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Estado de la reserva</ion-card-subtitle>
+            <ion-card-title color="danger">Requiere confirmación de pago del usuario</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

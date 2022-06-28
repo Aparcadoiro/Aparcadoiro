@@ -1,0 +1,45 @@
+<ion-row>
+  <ion-col size="0" size-sm="3" >
+    <div id="fondo">
+      <img  src="../../assets/img/Sin fondo (Blanco)(Recortado).png">
+    </div>
+  </ion-col>
+  <ion-col size="12" size-sm="9" >
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>REGISTRARSE</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeModal()">
+            <ion-icon slot="start" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <br>
+    <form [formGroup]="form" (ngSubmit)="onRegister(email,password,displayName)">
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre de usuario</ion-label>
+      <ion-input formControlName='displayName' type="text" #displayName required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Correo Electronico</ion-label>
+      <ion-input formControlName='email' type="text" #email required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input formControlName='password' type="password" #password required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Verificar contraseña</ion-label>
+      <ion-input formControlName='verifypassword' type="password" #password required></ion-input>
+    </ion-item>
+    <br>
+    <ion-button type="submit" [disabled]="form.invalid" expand="block" id="color_se">Registrarse</ion-button>
+    <br>
+    <p class="ion-text-center">
+      ¿Ya tienes una cuenta?
+      <a (click)="openLoginModal()" (click)="closeModal()"style="color: rgb(87, 135, 255);">Inicia sesion</a>
+    </p>
+  </form>
+  </ion-col>
+</ion-row>

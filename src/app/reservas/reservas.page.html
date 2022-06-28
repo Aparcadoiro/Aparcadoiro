@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis reservas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="user$ | async as user">
+    <ion-card *ngFor="let reserva of reservas$|async">
+      <div *ngFor="let parqueadero of parqueaderos$|async">
+        <div *ngIf="reserva.uid == user.uid && reserva.pid == parqueadero.id">
+          <ion-card-header>
+            <h4>
+              <div *ngIf="reserva.confirmUser == true && reserva.confirmParqueadero == true;else Unverified">
+                {{parqueadero.direccion}}<ion-icon color="success" name="checkmark-circle-outline"></ion-icon>
+              </div>
+              <ng-template #Unverified>
+                {{parqueadero.direccion}}<ion-icon color="danger" name="alert-circle-outline"></ion-icon>
+              </ng-template>
+            </h4>
+          </ion-card-header>
+            <ion-card-content>
+              <img [src]="parqueadero.imagenUrl"/>
+              <hr>
+              <ion-button (click)="openDetailReserva(reserva)">
+                Detalle
+              </ion-button>
+            </ion-card-content>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>
